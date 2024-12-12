@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Search App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+
+        .header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .search-container {
+            text-align: center;
+            margin: 20px;
+        }
+
+        .search-container input {
+            padding: 10px;
+            font-size: 16px;
+            width: 80%;
+            max-width: 400px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        .recipes-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .recipe-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            padding: 10px;
+        }
+
+        .recipe-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .recipe-card h3 {
+            margin: 10px 0;
+        }
+
+        .recipe-card p {
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Recipe Search App</h1>
+    </div>
+
+    <div class="search-container">
+        <input type="text" id="searchBar" placeholder="Search for a recipe..." onkeyup="filterRecipes()">
+    </div>
+
+    <div class="recipes-container" id="recipesContainer">
+        <div class="recipe-card">
+            <img src="dish1.jpg" alt="Dish 1">
+            <h3>Spaghetti Bolognese</h3>
+            <p>A classic Italian pasta dish with rich meat sauce.</p>
+        </div>
+        <div class="recipe-card">
+            <img src="dish2.jpg" alt="Dish 2">
+            <h3>Chicken Curry</h3>
+            <p>Spicy and flavorful chicken cooked in curry sauce.</p>
+        </div>
+        <div class="recipe-card">
+            <img src="dish3.jpg" alt="Dish 3">
+            <h3>Vegetable Stir Fry</h3>
+            <p>Fresh vegetables stir-fried with soy sauce and garlic.</p>
+        </div>
+        <div class="recipe-card">
+            <img src="dish4.jpg" alt="Dish 4">
+            <h3>Beef Tacos</h3>
+            <p>Ground beef seasoned with Mexican spices in a taco shell.</p>
+        </div>
+        <div class="recipe-card">
+            <img src="dish5.jpg" alt="Dish 5">
+            <h3>Salmon Fillet</h3>
+            <p>Pan-seared salmon with a crispy exterior.</p>
+        </div>
+        <div class="recipe-card">
+            <img src="dish6.jpg" alt="Dish 6">
+            <h3>Caesar Salad</h3>
+            <p>Crisp romaine lettuce with Caesar dressing and croutons.</p>
+        </div>
+        <div class="recipe-card">
+            <img src="dish7.jpg" alt="Dish 7">
+            <h3>Fried Rice</h3>
+            <p>A delicious stir-fried rice with vegetables and eggs.</p>
+        </div>
+        <div class="recipe-card">
+            <img src="dish8.jpg" alt="Dish 8">
+            <h3>Grilled Cheese Sandwich</h3>
+            <p>Crispy, buttery toast with melted cheese inside.</p>
+        </div>
+        <div class="recipe-card">
+            <img src="dish9.jpg" alt="Dish 9">
+            <h3>Margherita Pizza</h3>
+            <p>Simple pizza with fresh tomatoes, mozzarella, and basil.</p>
+        </div>
+        <div class="recipe-card">
+            <img src="dish10.jpg" alt="Dish 10">
+            <h3>Lasagna</h3>
+            <p>Layered pasta with a meat and cheese filling.</p>
+        </div>
+        <div class="recipe-card">
+            <img src="dish11.jpg" alt="Dish 11">
+            <h3>Chicken Alfredo</h3>
+            <p>Creamy pasta with chicken and Alfredo sauce.</p>
+        </div>
+        <div class="recipe-card">
+            <img src="dish12.jpg" alt="Dish 12">
+            <h3>Vegetarian Chili</h3>
+            <p>Hearty chili made with beans and vegetables.</p>
+        </div>
+        <div class="recipe-card">
+            <img src="dish13.jpg" alt="Dish 13">
+            <h3>Beef Wellington</h3>
+            <p>Beef tenderloin wrapped in puff pastry and baked.</p>
+        </div>
+        <div class="recipe-card">
+            <img src="dish14.jpg" alt="Dish 14">
+            <h3>Fish Tacos</h3>
+            <p>Fresh fish with a tangy slaw in a soft taco shell.</p>
+        </div>
+        <div class="recipe-card">
+            <img src="dish15.jpg" alt="Dish 15">
+            <h3>Shakshuka</h3>
+            <p>Poached eggs in a spiced tomato and pepper sauce.</p>
+        </div>
+        <div class="recipe-card">
+            <img src="dish16.jpg" alt="Dish 16">
+            <h3>Eggplant Parmesan</h3>
+            <p>Fried eggplant slices topped with marinara and cheese.</p>
+        </div>
+        <div class="recipe-card">
+            <img src="dish17.jpg" alt="Dish 17">
+            <h3>Pad Thai</h3>
+            <p>Stir-fried noodles with a savory-sweet sauce.</p>
+        </div>
+        <div class="recipe-card">
+            <img src="dish18.jpg" alt="Dish 18">
+            <h3>Chicken Schnitzel</h3>
+            <p>Breaded and fried chicken cutlet with a crispy crust.</p>
+        </div>
+        <div class="recipe-card">
+            <img src="dish19.jpg" alt="Dish 19">
+            <h3>Sushi Rolls</h3>
+            <p>Fresh sushi rolls with fish, rice, and vegetables.</p>
+        </div>
+        <div class="recipe-card">
+            <img src="dish20.jpg" alt="Dish 20">
+            <h3>Beef Stir Fry</h3>
+            <p>Beef and vegetables stir-fried in a savory sauce.</p>
+        </div>
+    </div>
+
+    <script>
+        function filterRecipes() {
+            const searchTerm = document.getElementById('searchBar').value.toLowerCase();
+            const recipes = document.querySelectorAll('.recipe-card');
+            
+            recipes.forEach(recipe => {
+                const title = recipe.querySelector('h3').textContent.toLowerCase();
+                if (title.includes(searchTerm)) {
+                    recipe.style.display = 'block';
+                } else {
+                    recipe.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
